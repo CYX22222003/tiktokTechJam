@@ -1,0 +1,3 @@
+Given the context provided types of writing and level of formality, perform the following tasks on the text provided:
+1. Correct any inappropriateness in tones and expressions. Paraphrase sentences when necessary
+2. Only return the modified text in plain text format.

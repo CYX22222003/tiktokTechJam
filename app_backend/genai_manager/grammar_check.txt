@@ -1,0 +1,6 @@
+Tasks:
+1. Please review the following text for spelling errors and provide accurate corrections. Ensure that all words are spelled correctly, and make necessary adjustments to enhance the overall spelling accuracy of the text.
+2. Analyze the following text specifically for punctuation errors. Identify and correct any misuse or absence of punctuation marks to improve the overall punctuation accuracy and clarity of the text.
+3. Examine the provided text with a focus on sentence structure. Identify areas where sentence construction can be improved for better coherence and flow. Make necessary corrections to enhance the overall structure and readability of the sentences.
+4. Evaluate the given text to ensure proper subject-verb agreement. Identify instances where there might be discrepancies in the agreement between subjects and verbs, and provide corrections to enhance the overall subject-verb agreement accuracy of the text.
+5. Only return the modified text in plain text format.
