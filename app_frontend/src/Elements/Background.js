@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -7,14 +7,19 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-//import Chart from './Chart';
+import Button from '@mui/material/Button'
 import { AppBar, Copyright } from './MiscElements';
 import Editor from './Editor';
+import { EditorTypeSelect, EditorFormalitySelect } from './Selection';
+import { types, formalities } from '../utils/const';
 
 const defaultTheme = createTheme();
 
 export default function Background() {
   const open = false;
+  const [text, setText] = useState("");
+  const [type, setType] = useState(0);
+  const [formality, setFormality] = useState(0);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -52,19 +57,40 @@ export default function Background() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+              {/* Context */}
+              <Grid item xs={20} md={8} lg={9}>
+                <EditorTypeSelect 
+                  type={type} 
+                  setType={setType} 
+                  typeList={types} />
+              </Grid>
+              <Grid item xs={20} md={8} lg={9}>
+                <EditorFormalitySelect 
+                  formality={formality}
+                  setFormality={setFormality}
+                  formalityList={formalities}
+                />
+              </Grid>
+              {/* Editor */}
+              <Grid item xs={20} md={8} lg={9}>
                 <Paper
                   sx={{
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 300,
                   }}
                 >
-                  <Editor />
+                  <Editor text={text} setText={setText} />
+                  <Button onClick={() => {
+                    console.log(type)
+                    console.log(formality)
+                    console.log(text)
+                  }}>
+                    Save
+                  </Button>
                 </Paper>
-              </Grid>   
+              </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>

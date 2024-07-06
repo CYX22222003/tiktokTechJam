@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+//import { Button } from "@mui/material";
 import StarterKit from "@tiptap/starter-kit";
 import {
   MenuButtonBold,
@@ -9,11 +9,11 @@ import {
   RichTextEditor
 } from "mui-tiptap";
 import Box from "@mui/material/Box"
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react"
 
-export default function Editor() {
+export default function Editor({text, setText}) {
   const rteRef = useRef(null);
-  const [text, setText] = useState("");
+  
   return (
     <React.Fragment>
       <Box>
@@ -21,6 +21,9 @@ export default function Editor() {
         ref={rteRef}
         extensions={[StarterKit]}
         content=""
+        onUpdate={(data) => {
+          setText(data?.editor.getText() ?? "")
+        }}
         renderControls={() => (
           <MenuControlsContainer>
             <MenuSelectHeading />
@@ -30,13 +33,6 @@ export default function Editor() {
           </MenuControlsContainer>
         )}
       />
-
-      <Button onClick={() => {
-        setText(rteRef.current?.editor?.getText());
-        console.log(text)
-      }}>
-        Save
-      </Button>
       </Box>
     </React.Fragment>
   );
