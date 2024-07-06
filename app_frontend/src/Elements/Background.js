@@ -13,6 +13,9 @@ import Editor from './Editor';
 import { EditorTypeSelect, EditorFormalitySelect } from './Selection';
 import { EditorTitleInput } from './TitleInput';
 import { types, formalities } from '../utils/const';
+import { AIActionCall } from '../utils/utils';
+import AIMessageDisplay from './Display';
+import MySnackbar from './Prompt';
 
 const defaultTheme = createTheme();
 
@@ -22,6 +25,9 @@ export default function Background() {
   const [type, setType] = useState(0);
   const [title, setTitle] = useState("");
   const [formality, setFormality] = useState(0);
+  const [aiResponse, setAIResponse] = useState("");
+  const [openPrompt, setOpenPrompt] = useState(false);
+  const [promptMsg , setPromptMsg] = useState("");
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -90,14 +96,46 @@ export default function Background() {
                     height: 300,
                   }}
                 >
-                  <Editor text={text} setText={setText} />
-                  <Button onClick={() => {
-                    console.log(type)
-                    console.log(formality)
-                    console.log(text)
+                  <Editor text={text} setText={setText} /><br />
+                  <Button 
+                  variant='contained'
+                  onClick={async () => {
+                    const data = {
+                      "name" : title,
+                      "article_type" : type,
+                      "formality" : formality,
+                      "body" : text
+                    }
+                    const res = await AIActionCall(data)
+                      .then(r => r.json())
+                      .then(out => {
+                        const f = out["AIResponse"];
+                        setPromptMsg("AI Response is loaded");
+                        setOpenPrompt(true);
+                        return f;
+                      })
+                      .catch((err) => {
+                        setPromptMsg("Fail to load AI resources")
+                        setOpenPrompt(true);
+                        throw new Error(err);
+                      })
+                    console.log(res);
+                    setAIResponse(res);
                   }}>
-                    Save
+                    Submit
                   </Button>
+                </Paper>
+              </Grid>
+              <Grid item xs={20} md={8} lg={9}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 300,
+                  }}
+                >
+                  <AIMessageDisplay aiResponse={aiResponse}/>
                 </Paper>
               </Grid>
             </Grid>
@@ -105,6 +143,11 @@ export default function Background() {
           </Container>
         </Box>
       </Box>
+      <MySnackbar 
+        open={openPrompt} 
+        setOpen={setOpenPrompt}
+        message={promptMsg}
+      />
     </ThemeProvider>
   );
 }
