@@ -8,13 +8,15 @@ import {
   MenuSelectHeading,
   RichTextEditor
 } from "mui-tiptap";
-import { useRef, useState } from "react";
+import Box from "@mui/material/Box"
+import React, { useRef, useState } from "react";
 
 export default function Editor() {
   const rteRef = useRef(null);
   const [text, setText] = useState("");
   return (
-    <div>
+    <React.Fragment>
+      <Box>
       <RichTextEditor
         ref={rteRef}
         extensions={[StarterKit]}
@@ -33,8 +35,9 @@ export default function Editor() {
         setText(rteRef.current?.editor?.getText());
         console.log(text)
       }}>
-        Log HTML
+        Save
       </Button>
-    </div>
+      </Box>
+    </React.Fragment>
   );
 }

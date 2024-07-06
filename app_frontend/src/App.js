@@ -1,13 +1,11 @@
-import Editor from "./Editor";
-
+//import Editor from "./Elements/Editor";
+import React from "react";
+import Background from "./Elements/Background";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-          Test
-      </header>
-      <Editor />
-    </div>
+    <React.Fragment>
+      <Background />
+    </React.Fragment>
   );
 }
 
