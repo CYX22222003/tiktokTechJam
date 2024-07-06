@@ -127,6 +127,8 @@ export default function Background() {
                       })
                     console.log(res);
                     setAIResponse(res);
+
+                    await getHistoryData().then((data) => {setRows(data)});
                   }}>
                     Submit
                   </Button>
