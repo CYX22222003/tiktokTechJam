@@ -11,6 +11,7 @@ import Button from '@mui/material/Button'
 import { AppBar, Copyright } from './MiscElements';
 import Editor from './Editor';
 import { EditorTypeSelect, EditorFormalitySelect } from './Selection';
+import { EditorTitleInput } from './TitleInput';
 import { types, formalities } from '../utils/const';
 
 const defaultTheme = createTheme();
@@ -19,6 +20,7 @@ export default function Background() {
   const open = false;
   const [text, setText] = useState("");
   const [type, setType] = useState(0);
+  const [title, setTitle] = useState("");
   const [formality, setFormality] = useState(0);
 
   return (
@@ -57,6 +59,13 @@ export default function Background() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
+              {/* Title */}
+              <Grid item xs={20} md={8} lg={9}>
+                <EditorTitleInput 
+                  filename={title}
+                  setFilename={setTitle}
+                />
+              </Grid>
               {/* Context */}
               <Grid item xs={20} md={8} lg={9}>
                 <EditorTypeSelect 

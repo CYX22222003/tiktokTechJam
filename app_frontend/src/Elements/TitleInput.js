@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import { Paper } from "@mui/material";
 
 export function EditorTitleInput({
   filename,
@@ -11,16 +12,17 @@ export function EditorTitleInput({
     <React.Fragment>
       <Box
         sx={{
-          m: 1,
+          m: 0,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          minWidth: 500,
+          alignItems: "justified",
+          minWidth: 300,
         }}
       >
-        <Box component="form" noValidate sx={{ mt: 3, minWidth: 500 }}>
+        <Box component="form" noValidate sx={{minWidth: 300 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
+              <Paper>
               <TextField
                 autoComplete="given-title"
                 name="Filename"
@@ -34,6 +36,7 @@ export function EditorTitleInput({
                     console.log(filename);
                 }}
               />
+              </Paper>
             </Grid>
           </Grid>
         </Box>

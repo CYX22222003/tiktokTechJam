@@ -2,7 +2,7 @@ import React from "react";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Paper } from "@mui/material";
 
 export function EditorTypeSelect({
     type,
@@ -11,7 +11,8 @@ export function EditorTypeSelect({
 }) {
     return (
         <React.Fragment>
-            <FormControl sx={{ m: 1, minWidth: 500 }}>
+            <Paper sx={{mt: 0.5, maxWidth: 500}}>
+            <FormControl sx={{ m: 0, minWidth: 500 }}>
                 <InputLabel id="demo-simple-select-autowidth-label1">
                     Select Type
                 </InputLabel>
@@ -33,6 +34,7 @@ export function EditorTypeSelect({
                     )}
                 </Select>
             </FormControl>
+            </Paper>
         </React.Fragment>
     );
 }
@@ -44,7 +46,8 @@ export function EditorFormalitySelect({
 }) {
     return (
         <React.Fragment>
-            <FormControl sx={{ m: 1, minWidth: 500 }}>
+            <Paper sx={{mt: 0.5, maxWidth: 500}}>
+            <FormControl sx={{ m: 0, minWidth: 500 }}>
                 <InputLabel id="demo-simple-select-autowidth-label2">
                     Select Formality
                 </InputLabel>
@@ -67,6 +70,7 @@ export function EditorFormalitySelect({
                 }
                 </Select>
             </FormControl>
+            </Paper>
         </React.Fragment>
     );
 }
