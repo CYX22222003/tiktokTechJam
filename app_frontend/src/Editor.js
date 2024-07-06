@@ -8,30 +8,31 @@ import {
   MenuSelectHeading,
   RichTextEditor
 } from "mui-tiptap";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Editor() {
   const rteRef = useRef(null);
-
+  const [text, setText] = useState("");
   return (
     <div>
       <RichTextEditor
         ref={rteRef}
-        extensions={[StarterKit]} // Or any Tiptap extensions you wish!
-        content="<p>Hello world</p>" // Initial content for the editor
-        // Optionally include `renderControls` for a menu-bar atop the editor:
+        extensions={[StarterKit]}
+        content=""
         renderControls={() => (
           <MenuControlsContainer>
             <MenuSelectHeading />
             <MenuDivider />
             <MenuButtonBold />
             <MenuButtonItalic />
-            {/* Add more controls of your choosing here */}
           </MenuControlsContainer>
         )}
       />
 
-      <Button onClick={() => console.log(rteRef.current?.editor?.getHTML())}>
+      <Button onClick={() => {
+        setText(rteRef.current?.editor?.getText());
+        console.log(text)
+      }}>
         Log HTML
       </Button>
     </div>
