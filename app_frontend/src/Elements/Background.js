@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -13,13 +13,19 @@ import Editor from './Editor';
 import { EditorTypeSelect, EditorFormalitySelect } from './Selection';
 import { EditorTitleInput } from './TitleInput';
 import { types, formalities } from '../utils/const';
-import { AIActionCall } from '../utils/utils';
+import { AIActionCall, getHistoryData } from '../utils/utils';
 import AIMessageDisplay from './Display';
 import MySnackbar from './Prompt';
+import { History } from './History';
 
 const defaultTheme = createTheme();
 
 export default function Background() {
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    getHistoryData().then((data) => setRows(data));
+  }, [])
+
   const open = false;
   const [text, setText] = useState("");
   const [type, setType] = useState(0);
@@ -136,6 +142,23 @@ export default function Background() {
                   }}
                 >
                   <AIMessageDisplay aiResponse={aiResponse}/>
+                </Paper>
+              </Grid>
+               <Grid item xs={20} md={8} lg={9}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 300,
+                  }}
+                >
+                  <History 
+                    rows={rows}
+                    setRows={setRows}
+                    aiResponse={aiResponse}
+                    setAIResponse={setAIResponse}
+                  />
                 </Paper>
               </Grid>
             </Grid>

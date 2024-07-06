@@ -3,6 +3,8 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import { MenuItem, Paper } from "@mui/material";
+import { formalities } from "../utils/const";
+import { types } from "../utils/const";
 
 export function EditorTypeSelect({
     type,
@@ -25,6 +27,8 @@ export function EditorTypeSelect({
                     }}
                     autoWidth
                     label="Select Type"
+                    content={"" + types[type]}
+                    value={types[type]}
                 >
                     {typeList.map((data, index) => (
                         <MenuItem value={index}>
@@ -60,6 +64,8 @@ export function EditorFormalitySelect({
                     }}
                     autoWidth
                     label="Select Formality"
+                    content={formalities[formality]}
+                    value={formalities[formality]}
                 >
                 {
                     formalityList.map((data, index) => (

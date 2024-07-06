@@ -3,13 +3,14 @@ import React from "react";
 import { downloadAIResponse } from "../utils/utils";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
+import { Button, Container} from "@mui/material";
 
 export default function AIMessageDisplay({
   aiResponse,
 }) {
   return (
     <React.Fragment>
+      <Container>
       <Box component="form" noValidate sx={{ maxHeight: 500, minWidth: 300 }}>
         <Paper elevation={1}>
           <Typography variant="body1">{aiResponse}</Typography> <br />
@@ -18,6 +19,7 @@ export default function AIMessageDisplay({
       <Button onClick={() => downloadAIResponse(aiResponse)}>
         Download AI response
       </Button>
+      </Container>
     </React.Fragment>
   );
 }

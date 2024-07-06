@@ -20,9 +20,9 @@ export default function Editor({text, setText}) {
       <RichTextEditor
         ref={rteRef}
         extensions={[StarterKit]}
-        content=""
+        content={text}
         onUpdate={(data) => {
-          setText(data?.editor.getText() ?? "")
+          setText(data?.editor.getText() ?? text)
         }}
         renderControls={() => (
           <MenuControlsContainer>
